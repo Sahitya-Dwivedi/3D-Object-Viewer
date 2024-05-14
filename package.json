@@ -1,0 +1,11 @@
+{
+  "name": "3d-object-viewer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "srcipt.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sahitya Dwivedi",
+  "license": "ISC"
+}
