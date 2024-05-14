@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#file {
+    /* background-color: white; */
+    /* color: black; */
+    /* width: 375px; */
+    /* height: 30.75px; */
+    margin: 5px;
+    padding: 6px;
+    font-size: 20px;
+    border: 3px solid lavender;
+    border-radius: 20px;
+    position: absolute;
+    top: 10px;
+    overflow: hidden;
+}
+
+.btn,
+.screen {
+    position: absolute;
+    top: 10px;
+    background-color: red;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("/space.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.dark {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 45%;
+}
