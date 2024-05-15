@@ -4,10 +4,9 @@
 }
 
 #file {
-    background-color: white;
+    background-color: red;
     color: black;
-    padding: 6px; 
-    font-size: 20px;
+    padding: 6px;
     border: 3px solid lavender;
     border-radius: 20px;
     position: absolute;
@@ -15,24 +14,26 @@
     overflow: hidden;
     box-sizing: border-box;
     opacity: 0;
-    /* z-index: 10; */
+    z-index: 10;
+    font-size: 20px;
 }
 
 .style-input {
     width: 397px;
     height: 47px;
     margin: 5px;
-    font-size: 20px;
     position: absolute;
-    top: 10px;
-    background-color: red;
+    background-color: wheat;
     border-radius: 20px;
     overflow: hidden;
     box-sizing: border-box;
+    display: flex;
+    justify-content: end;
+    align-items: center;
 }
 
-.btn{
-    background-color: yellow;
+.btn {
+    background-color: rgb(52, 50, 78);
     width: 122.72px;
     height: 29px;
     position: absolute;
@@ -42,6 +43,26 @@
     margin-right: 4px;
     padding: 1px 6px;
     border-radius: 10px;
+    font-size: 15px;
+    font-weight: bolder;
+    font-style: italic;
+    color: antiquewhite;
+    border: 2px solid black;
+}
+
+.file_label {
+    width: calc(397px - 140px);
+    height: 47px;
+    font-size: 20px;
+    padding: 6px;
+    display: flex;
+    position: relative;
+    left: 20px;
+    align-items: center;
+    font-weight: 600;
+    font-family: sans-serif;
+    font-style: italic;
+    text-decoration: underline;
 }
 
 body {
@@ -58,4 +79,14 @@ body {
     height: 100vh;
     background-color: black;
     opacity: 45%;
+}
+
+.view {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
