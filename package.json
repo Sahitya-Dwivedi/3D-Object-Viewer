@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "script.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sahitya Dwivedi",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "three": "^0.164.1",
+    "vite": "^5.2.11"
+  }
 }

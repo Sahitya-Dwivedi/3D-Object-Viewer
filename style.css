@@ -4,6 +4,7 @@
 }
 
 #file {
+    width: 380px;
     background-color: red;
     color: black;
     padding: 6px;
@@ -19,7 +20,7 @@
 }
 
 .style-input {
-    width: 397px;
+    width: 380px;
     height: 47px;
     margin: 5px;
     position: absolute;
@@ -51,27 +52,30 @@
 }
 
 .file_label {
-    width: calc(397px - 140px);
+    text-overflow: ellipsis;
+    width: calc(353px - 140px);
     height: 47px;
     font-size: 20px;
     padding: 6px;
-    display: flex;
     position: relative;
-    left: 20px;
-    align-items: center;
+    right: 8px;
+    top: 25%;
     font-weight: 600;
     font-family: sans-serif;
     font-style: italic;
     text-decoration: underline;
+    overflow: hidden;
+    text-wrap: nowrap;
 }
 
 body {
     width: 100vw;
     height: 100vh;
-    background-image: url("/space.jpg");
+    background-image: url("/night-sky-glows-with-iridescent-deep-space-generative-ai.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    overflow: hidden;
 }
 
 .dark {
@@ -79,6 +83,9 @@ body {
     height: 100vh;
     background-color: black;
     opacity: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .view {
