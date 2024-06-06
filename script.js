@@ -5,7 +5,92 @@ let file_label = document.querySelector(".file_label")
 let file = document.querySelector("#file")
 let view = document.querySelector(".view")
 let dark = document.querySelector(".dark")
-let a = false
+let load = false
+let box = document.getElementsByClassName("box")
+async function box1firstanimation() {
+    return new Promise((resolve, reject) => {
+        resolve(
+            box[1].style.animation = "1s 1s linear forwards hope_up"
+        )
+    })
+}
+async function box2firstanimation() {
+    return new Promise((resolve, reject) => {
+        box[1].addEventListener("animationend", function () {
+            resolve(
+                box[2].style.animation = "1s linear forwards hope_up"
+            )
+        }, { once: true })
+    })
+}
+async function box3firstanimation() {
+    return new Promise((resolve, reject) => {
+        box[2].addEventListener("animationend", function () {
+            resolve(
+                box[3].style.animation = "1s  linear forwards hope_up"
+            )
+        }, { once: true })
+    })
+}
+async function box4firstanimation() {
+    return new Promise((resolve, reject) => {
+        box[3].addEventListener("animationend", function () {
+            resolve(
+                box[4].style.animation = "1s 0.5s linear forwards hope_up"
+            )
+        }, { once: true })
+    })
+}
+async function box4lastanimation() {
+    return new Promise((resolve, reject) => {
+        box[4].addEventListener("animationend", function () {
+            resolve(
+                box[4].style.animation = "1s  linear forwards hope_up_reverse"
+            )
+        }, { once: true })
+    })
+}
+async function box3lastanimation() {
+    return new Promise((resolve, reject) => {
+        box[4].addEventListener("animationend", function () {
+            resolve(
+                box[3].style.animation = "1s linear forwards hope_up_reverse"
+            )
+        }, { once: true })
+    })
+}
+async function box2lastanimation() {
+    return new Promise((resolve, reject) => {
+        box[3].addEventListener("animationend", function () {
+            resolve(
+                box[2].style.animation = "1s linear forwards hope_up_reverse"
+            )
+        }, { once: true })
+    })
+}
+async function box1lastanimation() {
+    return new Promise((resolve, reject) => {
+        box[2].addEventListener("animationend", function () {
+            console.log("HELLO ");
+            resolve(
+                setTimeout(() => {
+                    box[1].style.animation = "1s linear forwards hope_up_reverse"
+                }, 500)
+            )
+        }, { once: true })
+    })
+}
+async function main() {
+    await box1firstanimation()
+    await box2firstanimation()
+    await box3firstanimation()
+    await box4firstanimation()
+    await box4lastanimation()
+    await box3lastanimation()
+    await box2lastanimation()
+    await box1lastanimation()
+}
+
 
 let scene = new THREE.Scene()
 
@@ -22,7 +107,7 @@ let loader = new GLTFLoader()
 async function loader3dmodel(modelName) {
     return new Promise((resolve, reject) => {
         loader.load(modelName, (glb) => {
-            resolve(scene.add(glb.scene), a = true)
+            resolve(scene.add(glb.scene), load = true)
         })
     })
 
@@ -52,12 +137,13 @@ file.addEventListener("change", async function () {
     view.style.alignItems = "flex-start"
     view.style.opacity = "0%"
     dark.style.opacity = "100%"
-    dark.style.color = "white"
-    dark.innerHTML = "<h1>Loading</h1>"
+    dark.innerHTML = '<div class="container"><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div></div>'
+    main()
     await loader3dmodel(url_img)
-    if (a) {
-        dark.style.transition = "all 1s ease-in-out"
+    if (load) {
+        dark.style.transition = "all 0.75s ease-in-out"
         dark.style.opacity = "0%"
+        dark.innerHTML=""
         view.style.opacity = "100%"
     }
     animate()
