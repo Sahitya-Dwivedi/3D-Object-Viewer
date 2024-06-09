@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 let file_label = document.querySelector(".file_label")
 let file = document.querySelector("#file")
 let view = document.querySelector(".view")
@@ -71,7 +72,6 @@ async function box2lastanimation() {
 async function box1lastanimation() {
     return new Promise((resolve, reject) => {
         box[2].addEventListener("animationend", function () {
-            console.log("HELLO ");
             resolve(
                 setTimeout(() => {
                     box[1].style.animation = "1s linear forwards hope_up_reverse"
@@ -107,12 +107,12 @@ let loader = new GLTFLoader()
 async function loader3dmodel(modelName) {
     return new Promise((resolve, reject) => {
         loader.load(modelName, (glb) => {
-            resolve(scene.add(glb.scene), load = true)
+            resolve(scene.add(glb.scene),load = true)
+        },undefined,(error)=>{
+            console.error(error);
         })
     })
-
 }
-
 let light = new THREE.SpotLight(0xffffff, 3000, 100, 0.2, 0.5)
 light.position.set(0, 25, 0)
 scene.add(light)
@@ -131,7 +131,6 @@ file.addEventListener("change", async function () {
     let Image = file.files[0]
     let url_img = URL.createObjectURL(Image)
     file_label.textContent = Image.name
-    console.log(Image);
     renderer.render(scene, camera)
     view.appendChild(renderer.domElement)
     view.style.alignItems = "flex-start"
