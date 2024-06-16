@@ -1,13 +1,13 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 let file_label = document.querySelector(".file_label")
 let file = document.querySelector("#file")
 let view = document.querySelector(".view")
 let dark = document.querySelector(".dark")
 let load = false
 let box = document.getElementsByClassName("box")
+let err_display = document.createElement("div")
 async function box1firstanimation() {
     return new Promise((resolve, reject) => {
         resolve(
@@ -107,9 +107,15 @@ let loader = new GLTFLoader()
 async function loader3dmodel(modelName) {
     return new Promise((resolve, reject) => {
         loader.load(modelName, (glb) => {
-            resolve(scene.add(glb.scene),load = true)
-        },undefined,(error)=>{
-            console.error(error);
+            scene.add(glb.scene)
+            resolve(load = true)
+        }, undefined, () => {
+            dark.style.opacity = "100%"
+            dark.innerHTML = ""
+            dark.appendChild(err_display)
+            err_display.style.color = "white"
+            err_display.style.fontSize = "40px"
+            err_display.textContent = "Sorry but we don't support this file format"
         })
     })
 }
@@ -142,7 +148,7 @@ file.addEventListener("change", async function () {
     if (load) {
         dark.style.transition = "all 0.75s ease-in-out"
         dark.style.opacity = "0%"
-        dark.innerHTML=""
+        dark.innerHTML = ""
         view.style.opacity = "100%"
     }
     animate()
