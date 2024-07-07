@@ -5,21 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Viewer</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./src/output.css">
+    <link rel="stylesheet" href="animation.css">
 </head>
 
-<body>
-    <div class="dark">
-        
+<body class="text-black bg-[#f5f5f5] overflow-hidden">
+    <div class="cont w-324 h-50 flex justify-center items-center gap-5"></div>
+    <div class="view w-screen text-center flex justify-center items-center flex-col gap-4 ">
+        <input type="file" name="file" id="file" accept=".glb" class="file:text-black file:rounded-2xl file:border-none file:bg-blue-500 file:w-30 file:px-2 file:py-1 file:mr-5 file:font-semibold file:font-sans font-semibold bg-[#d9d9d98f] bg-opacity-15 p-2 rounded-xl text-ellipsis shadow-black shadow-2xl relative mix-blend-multiply border border-cyan-300 cursor-pointer
+            file:cursor-pointer">
+        <div class="line underline w-[350px] bg-purple-400 h-1 opacity-65 rounded-[10px] mix-blend-difference relative">
+        </div>
     </div>
-        <div class="view">
-            <div class="style-input">
-                <button class="btn">Choose File</button>
-                <div class="file_label">No file chosen</div>
-            <input type="file" name="file" id="file" accept=".glb">
-        </div>
-        </div>
-        <script type="module" src="script.js"></script>
+    <div class="underline bg-purple-400 h-1 opacity-65 rounded-[10px] relative mix-blend-difference bottom-12 w-full">
+    </div>
+    <div class="font-bold relative bottom-10 text-center">Made By Sahitya
+    </div>
+
+    <script type="module" src="script.js"></script>
 </body>
 
 </html>
