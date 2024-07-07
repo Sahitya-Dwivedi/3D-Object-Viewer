@@ -1,0 +1,44 @@
+@keyframes MoveLeft {
+    0% {
+        transform: translateX(0px);
+    }
+
+    100% {
+        transform: translateX(217px);
+    }
+}
+
+@keyframes hope_up {
+    0% {
+        transform: translate(0px, 0px) rotate(180deg);
+    }
+
+    25% {
+        transform: translate(-26px, -50px) rotate(90deg);
+    }
+
+    50% {
+        transform: translate(-55px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-55px) rotate(0deg);
+    }
+}
+
+@keyframes hope_up_reverse {
+    0% {
+        transform: translate(-55px) rotate(0deg);
+    }
+    25%{
+        transform: translate(-26px, -50px) rotate(90deg);
+    }
+
+    50% {
+        transform: translate(0px, 0px) rotate(180deg);
+    }
+
+    100% {
+        transform: translate(0px, 0px) rotate(180deg);
+    }
+}
