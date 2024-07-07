@@ -1,13 +1,12 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-let file_label = document.querySelector(".file_label")
 let file = document.querySelector("#file")
 let view = document.querySelector(".view")
-let dark = document.querySelector(".dark")
 let load = false
 let box = document.getElementsByClassName("box")
-let err_display = document.createElement("div")
+let cont = document.querySelector(".cont")
+view.style.height = "100vh"
 async function box1firstanimation() {
     return new Promise((resolve, reject) => {
         resolve(
@@ -110,12 +109,13 @@ async function loader3dmodel(modelName) {
             scene.add(glb.scene)
             resolve(load = true)
         }, undefined, () => {
-            dark.style.opacity = "100%"
-            dark.innerHTML = ""
-            dark.appendChild(err_display)
-            err_display.style.color = "white"
-            err_display.style.fontSize = "40px"
-            err_display.textContent = "Sorry but we don't support this file format"
+            view.innerHTML = ""
+            view.style.fontSize = "40px"
+            view.textContent = "Sorry but we don't support this file format"
+            cont.style.width = "0"
+            cont.style.height = "0"
+            cont.innerHTML = ""
+            view.style.opacity = "100%"
         })
     })
 }
@@ -127,28 +127,38 @@ let ctrl = new OrbitControls(camera, renderer.domElement)
 
 function animate() {
     requestAnimationFrame(animate)
-    camera.aspect = window.innerWidth / window.innerHeight
+    camera.aspect = window.innerWidth / (window.innerHeight - 100)
     camera.updateProjectionMatrix()
-    renderer.setSize(window.innerWidth, window.innerHeight)
+    renderer.setSize(window.innerWidth, window.innerHeight - 100)
     renderer.render(scene, camera)
 }
 
 file.addEventListener("change", async function () {
     let Image = file.files[0]
     let url_img = URL.createObjectURL(Image)
-    file_label.textContent = Image.name
+    file.textContent = Image.name
     renderer.render(scene, camera)
     view.appendChild(renderer.domElement)
-    view.style.alignItems = "flex-start"
     view.style.opacity = "0%"
-    dark.style.opacity = "100%"
-    dark.innerHTML = '<div class="container"><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div></div>'
+    cont.style.width = "100vw"
+    cont.style.height = "100vh"
+    cont.innerHTML = `<div class="box animate-[5s_linear_infinite_alternate_MoveLeft]"></div>
+        <div class="box "></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>`
+    for (let i = 0; i < 5; i++) {
+        box[i].style.width = "36px"
+        box[i].style.height = "34px"
+        box[i].style.backgroundColor = "rgb(51 135 235)"
+        box[i].style.borderRadius = "15%"
+    }
+    box[0].style.animation = "5s linear infinite alternate MoveLeft"
     main()
     await loader3dmodel(url_img)
     if (load) {
-        dark.style.transition = "all 0.75s ease-in-out"
-        dark.style.opacity = "0%"
-        dark.innerHTML = ""
+        cont.style.width = "0"
+        cont.style.height = "0"
         view.style.opacity = "100%"
     }
     animate()
