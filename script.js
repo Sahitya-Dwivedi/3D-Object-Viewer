@@ -7,6 +7,7 @@ let load = false
 let box = document.getElementsByClassName("box")
 let cont = document.querySelector(".cont")
 view.style.height = "100vh"
+let reuse = false
 async function box1firstanimation() {
     return new Promise((resolve, reject) => {
         resolve(
@@ -106,7 +107,13 @@ let loader = new GLTFLoader()
 async function loader3dmodel(modelName) {
     return new Promise((resolve, reject) => {
         loader.load(modelName, (glb) => {
+            if (reuse) {
+                scene.clear(glb.scene)
+                reuse = false
+            }
             scene.add(glb.scene)
+            reuse = true
+            scene.add(light)
             resolve(load = true)
         }, undefined, () => {
             view.innerHTML = ""
@@ -119,7 +126,7 @@ async function loader3dmodel(modelName) {
         })
     })
 }
-let light = new THREE.SpotLight(0xffffff, 3000, 100, 0.2, 0.5)
+let light = new THREE.SpotLight(0xffffff, 20000, 100, 0.2, 0.5)
 light.position.set(0, 25, 0)
 scene.add(light)
 
@@ -143,7 +150,7 @@ file.addEventListener("change", async function () {
     cont.style.width = "100vw"
     cont.style.height = "100vh"
     cont.innerHTML = `<div class="box animate-[5s_linear_infinite_alternate_MoveLeft]"></div>
-        <div class="box "></div>
+        <div class="box"></div>
         <div class="box"></div>
         <div class="box"></div>
         <div class="box"></div>`
